@@ -3,30 +3,37 @@
 //   console.log('links:', links);
 // });
 
-const links = document.querySelectorAll('.titles a');
+const titleClickHandler = function (event) {
+    event.preventDefault();
+    const clickedElement = this;
 
-const titleClickHandler = function(event){
-  /* remove class 'active' from all article links  */
+    /* [DONE] remove class 'active' from all article links  */
     const activeLinks = document.querySelectorAll('.titles a.active');
 
-    for(let activeLink of activeLinks){
-    activeLink.classList.remove('active');
+    for (let activeLink of activeLinks) {
+        activeLink.classList.remove('active');
     }
-  /* add class 'active' to the clicked link */
 
-  /* remove class 'active' from all articles */
+    /* [DONE] add class 'active' to the clicked link */
+    // console.log('clickedElement:', clickedElement);
+
+    /* [DONE] remove class 'active' from all articles */
     const activeArticles = document.querySelectorAll('.posts article.active');
 
-    for(let activeArticle of activeArticles){
-    activeArticle.classList.remove('active');
+    for (let activeArticle of activeArticles) {
+        activeArticle.classList.remove('active');
     }
-  /* get 'href' attribute from the clicked link */
-
-  /* find the correct article using the selector (value of 'href' attribute) */
-
-  /* add class 'active' to the correct article */
+    /* [DONE] get 'href' attribute from the clicked link */
+    const linkHref = clickedElement.getAttribute("href");
+    /* [DONE] find the correct article using the selector (value of 'href' attribute) */
+    const article = document.querySelector(linkHref);
+    // console.log(article);
+    /* [DONE] add class 'active' to the correct article */
+    article.classList.add('active');
 }
 
-for(let link of links){
+const links = document.querySelectorAll('.titles a');
+
+for (let link of links) {
     link.addEventListener('click', titleClickHandler);
 }
